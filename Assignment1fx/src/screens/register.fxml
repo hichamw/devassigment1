@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="assignment1fx.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="screens.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="283.0" layoutY="14.0" minHeight="16" minWidth="69" prefHeight="37.0" prefWidth="235.0" text="Register your account">
          <font>

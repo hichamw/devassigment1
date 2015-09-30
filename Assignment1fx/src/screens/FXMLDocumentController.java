@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package assignment1fx;
+package screens;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,12 +16,16 @@ import javafx.scene.control.Label;
  *
  * @author hicham
  */
-public class FXMLDocumentController implements Initializable {
-    
+public class FXMLDocumentController implements ControlledScreen ,Initializable {
+    ScreensController myController;
     @FXML
     private Label label;
     
-    @FXML
+    @Override
+    public void setScreenParent(ScreensController screenParent){
+        myController = screenParent;
+    }
+    
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
