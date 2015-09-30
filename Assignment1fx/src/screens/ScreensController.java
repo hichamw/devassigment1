@@ -69,14 +69,14 @@ public class ScreensController  extends StackPane {
             if (!getChildren().isEmpty()) {    //if there is more than one screen
                 Timeline fade = new Timeline(
                         new KeyFrame(Duration.ZERO, new KeyValue(opacity, 1.0)),
-                        new KeyFrame(new Duration(1000), new EventHandler<ActionEvent>() {
+                        new KeyFrame(new Duration(250), new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent t) {
                         getChildren().remove(0);                    //remove the displayed screen
                         getChildren().add(0, screens.get(name));     //add the screen
                         Timeline fadeIn = new Timeline(
                                 new KeyFrame(Duration.ZERO, new KeyValue(opacity, 0.0)),
-                                new KeyFrame(new Duration(800), new KeyValue(opacity, 1.0)));
+                                new KeyFrame(new Duration(400), new KeyValue(opacity, 1.0)));
                         fadeIn.play();
                     }
                 }, new KeyValue(opacity, 0.0)));
@@ -95,22 +95,6 @@ public class ScreensController  extends StackPane {
             System.out.println("screen hasn't been loaded!!! \n");
             return false;
         }
-
-
-        /*Node screenToRemove;
-         if(screens.get(name) != null){   //screen loaded
-         if(!getChildren().isEmpty()){    //if there is more than one screen
-         getChildren().add(0, screens.get(name));     //add the screen
-         screenToRemove = getChildren().get(1);
-         getChildren().remove(1);                    //remove the displayed screen
-         }else{
-         getChildren().add(screens.get(name));       //no one else been displayed, then just show
-         }
-         return true;
-         }else {
-         System.out.println("screen hasn't been loaded!!! \n");
-         return false;
-         }*/
     }
 
     //This method will remove the screen with the given name from the collection of screens
