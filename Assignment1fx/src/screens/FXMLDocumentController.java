@@ -26,9 +26,8 @@ public class FXMLDocumentController implements ControlledScreen ,Initializable {
         myController = screenParent;
     }
     
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+    public void backtologin(ActionEvent event) {
+        myController.setScreen(ScreensFramework.screen1ID);
     }
     
     @Override

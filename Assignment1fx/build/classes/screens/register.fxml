@@ -7,17 +7,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="screens.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screens.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="283.0" layoutY="14.0" minHeight="16" minWidth="69" prefHeight="37.0" prefWidth="235.0" text="Register your account">
          <font>
             <Font name="Calibri" size="24.0" />
          </font></Label>
-      <TextField layoutX="306.0" layoutY="74.0" prefHeight="25.0" prefWidth="189.0" text="Username" />
-      <TextField layoutX="306.0" layoutY="109.0" prefHeight="25.0" prefWidth="189.0" text="First name" />
-      <TextField layoutX="306.0" layoutY="141.0" prefHeight="25.0" prefWidth="189.0" text="Last name" />
-      <TextField layoutX="306.0" layoutY="174.0" prefHeight="25.0" prefWidth="189.0" text="Password" />
-      <TextField layoutX="306.0" layoutY="206.0" prefHeight="25.0" prefWidth="189.0" text="Repeat password" />
+      <TextField layoutX="306.0" layoutY="74.0" prefHeight="25.0" prefWidth="189.0" promptText="Username" />
+      <TextField layoutX="306.0" layoutY="109.0" prefHeight="25.0" prefWidth="189.0" promptText="First name" />
+      <TextField layoutX="306.0" layoutY="141.0" prefHeight="25.0" prefWidth="189.0" promptText="Last name" />
       <Button layoutX="364.0" layoutY="239.0" mnemonicParsing="false" text="Submit" />
+      <PasswordField layoutX="306.0" layoutY="174.0" prefHeight="25.0" prefWidth="189.0" promptText="Password" />
+      <PasswordField layoutX="306.0" layoutY="207.0" prefHeight="25.0" prefWidth="189.0" promptText="Repeat password" />
+      <Button mnemonicParsing="false" text="Button" />
+      <Button layoutX="701.0" layoutY="25.0" mnemonicParsing="false" onAction="#backtologin" text="Back to login" />
     </children>
 </AnchorPane>
