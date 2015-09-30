@@ -1,0 +1,293 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.4
+-- Dumped by pg_dump version 9.4.4
+-- Started on 2015-09-30 14:21:45
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 2039 (class 1262 OID 16432)
+-- Dependencies: 2038
+-- Name: assignment 1; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON DATABASE "assignment 1" IS 'opdracht 1
+';
+
+
+--
+-- TOC entry 177 (class 3079 OID 11855)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2042 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 172 (class 1259 OID 16439)
+-- Name: characters; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE characters (
+    name character varying(64) NOT NULL,
+    class integer NOT NULL,
+    race character varying(64) NOT NULL,
+    level integer DEFAULT 1 NOT NULL
+);
+
+
+ALTER TABLE characters OWNER TO postgres;
+
+--
+-- TOC entry 175 (class 1259 OID 16469)
+-- Name: owns; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE owns (
+    name character varying(64) NOT NULL,
+    user_name character varying(64) NOT NULL
+);
+
+
+ALTER TABLE owns OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 16456)
+-- Name: servers; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE servers (
+    address character varying(64) NOT NULL,
+    name character varying(64) NOT NULL,
+    location character varying NOT NULL,
+    max_users integer DEFAULT 30,
+    connected_users character varying(64)
+);
+
+
+ALTER TABLE servers OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 16484)
+-- Name: stores; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE stores (
+    address character varying(64) NOT NULL,
+    user_name character varying(64) NOT NULL
+);
+
+
+ALTER TABLE stores OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 16445)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE users (
+    user_name character varying(64) NOT NULL,
+    balance numeric DEFAULT 0,
+    first_name character varying(64) NOT NULL,
+    last_name character varying(64) NOT NULL,
+    iban character varying(18) NOT NULL,
+    character_slots integer DEFAULT 5,
+    last_payment date NOT NULL,
+    months_payed integer NOT NULL,
+    password character varying(64) NOT NULL,
+    banned boolean DEFAULT false
+);
+
+
+ALTER TABLE users OWNER TO postgres;
+
+--
+-- TOC entry 2029 (class 0 OID 16439)
+-- Dependencies: 172
+-- Data for Name: characters; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY characters (name, class, race, level) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2032 (class 0 OID 16469)
+-- Dependencies: 175
+-- Data for Name: owns; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY owns (name, user_name) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2031 (class 0 OID 16456)
+-- Dependencies: 174
+-- Data for Name: servers; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY servers (address, name, location, max_users, connected_users) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2033 (class 0 OID 16484)
+-- Dependencies: 176
+-- Data for Name: stores; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY stores (address, user_name) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2030 (class 0 OID 16445)
+-- Dependencies: 173
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY users (user_name, balance, first_name, last_name, iban, character_slots, last_payment, months_payed, password, banned) FROM stdin;
+\.
+
+
+--
+-- TOC entry 1903 (class 2606 OID 16444)
+-- Name: characters_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY characters
+    ADD CONSTRAINT characters_pkey PRIMARY KEY (name);
+
+
+--
+-- TOC entry 1913 (class 2606 OID 16473)
+-- Name: pk_owns; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY owns
+    ADD CONSTRAINT pk_owns PRIMARY KEY (name, user_name);
+
+
+--
+-- TOC entry 1915 (class 2606 OID 16488)
+-- Name: pk_stores; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY stores
+    ADD CONSTRAINT pk_stores PRIMARY KEY (address, user_name);
+
+
+--
+-- TOC entry 1907 (class 2606 OID 16468)
+-- Name: servers_location_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY servers
+    ADD CONSTRAINT servers_location_key UNIQUE (location);
+
+
+--
+-- TOC entry 1909 (class 2606 OID 16466)
+-- Name: servers_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY servers
+    ADD CONSTRAINT servers_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 1911 (class 2606 OID 16464)
+-- Name: servers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY servers
+    ADD CONSTRAINT servers_pkey PRIMARY KEY (address);
+
+
+--
+-- TOC entry 1905 (class 2606 OID 16455)
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (user_name);
+
+
+--
+-- TOC entry 1916 (class 2606 OID 16474)
+-- Name: owns_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY owns
+    ADD CONSTRAINT owns_name_fkey FOREIGN KEY (name) REFERENCES characters(name);
+
+
+--
+-- TOC entry 1917 (class 2606 OID 16479)
+-- Name: owns_user_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY owns
+    ADD CONSTRAINT owns_user_name_fkey FOREIGN KEY (user_name) REFERENCES users(user_name);
+
+
+--
+-- TOC entry 1918 (class 2606 OID 16489)
+-- Name: stores_address_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY stores
+    ADD CONSTRAINT stores_address_fkey FOREIGN KEY (address) REFERENCES servers(address);
+
+
+--
+-- TOC entry 1919 (class 2606 OID 16494)
+-- Name: stores_user_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY stores
+    ADD CONSTRAINT stores_user_name_fkey FOREIGN KEY (user_name) REFERENCES users(user_name);
+
+
+--
+-- TOC entry 2041 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2015-09-30 14:21:45
+
+--
+-- PostgreSQL database dump complete
+--
+
