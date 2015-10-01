@@ -5,12 +5,22 @@
  */
 package screens;
 
+import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import java.util.Date;
+import javax.persistence.Column;
 
 /**
  *
@@ -20,6 +30,20 @@ public class FXMLDocumentController implements ControlledScreen ,Initializable {
     ScreensController myController;
     @FXML
     private Label label;
+    @FXML
+    private TextField regUserName;
+    @FXML
+    private TextField regFirstName;
+    @FXML
+    private TextField regLastName;
+    @FXML
+    private TextField regPassword;
+    @FXML
+    private TextField regPasswordRepeat;
+    @FXML
+    private Button regSubmit;
+    @FXML
+    private Label regSuccessLabel;
     
     @Override
     public void setScreenParent(ScreensController screenParent){
@@ -33,6 +57,45 @@ public class FXMLDocumentController implements ControlledScreen ,Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }   
+    @FXML
+    public void onSubmitClick(ActionEvent event) {
+        try {
+            if(!regUserName.getText().equals("") && !regFirstName.getText().equals("") && !regLastName.getText().equals("") && regPassword.getText().equals(regPasswordRepeat.getText())&& !regPassword.getText().equals("")&& !regPasswordRepeat.getText().equals("")){
+            Users newUser = new Users();
+            newUser.setFirstName(regFirstName.getText());
+            newUser.setLastName(regLastName.getText());
+            newUser.setPassword(regPassword.getText());
+            newUser.setUserName(regUserName.getText());
+            newUser.setCharacterSlots(5);
+            newUser.setBanned(false);
+            newUser.setMonthsPayed(0);
+            Date lastPayment = new Date();
+            newUser.setLastPayment(lastPayment);
+            newUser.setIban("null");
+            newUser.setBalance(null);
+            persist(newUser);
+            regSuccessLabel.setText("Your account is successfully created!");
+            }
+        } catch(Exception e) {
+            System.err.println(e.getMessage());
+        }
+        
+    }
+    
+    public void persist(Object object) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Assignment1fxPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        try {
+            em.persist(object);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+    }
     
 }

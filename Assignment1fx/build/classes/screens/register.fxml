@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -13,12 +14,13 @@
          <font>
             <Font name="Calibri" size="24.0" />
          </font></Label>
-      <TextField layoutX="306.0" layoutY="74.0" prefHeight="25.0" prefWidth="189.0" promptText="Username" />
-      <TextField layoutX="306.0" layoutY="109.0" prefHeight="25.0" prefWidth="189.0" promptText="First name" />
-      <TextField layoutX="306.0" layoutY="141.0" prefHeight="25.0" prefWidth="189.0" promptText="Last name" />
-      <Button layoutX="364.0" layoutY="239.0" mnemonicParsing="false" text="Submit" />
-      <PasswordField layoutX="306.0" layoutY="174.0" prefHeight="25.0" prefWidth="189.0" promptText="Password" />
-      <PasswordField layoutX="306.0" layoutY="207.0" prefHeight="25.0" prefWidth="189.0" promptText="Repeat password" />
+      <TextField fx:id="regUserName" layoutX="306.0" layoutY="74.0" prefHeight="25.0" prefWidth="189.0" promptText="Username" />
+      <TextField fx:id="regFirstName" layoutX="306.0" layoutY="109.0" prefHeight="25.0" prefWidth="189.0" promptText="First name" />
+      <TextField fx:id="regLastName" layoutX="306.0" layoutY="141.0" prefHeight="25.0" prefWidth="189.0" promptText="Last name" />
+      <Button fx:id="regSubmit" layoutX="364.0" layoutY="239.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Submit" />
+      <PasswordField fx:id="regPassword" layoutX="306.0" layoutY="174.0" prefHeight="25.0" prefWidth="189.0" promptText="Password" />
+      <PasswordField fx:id="regPasswordRepeat" layoutX="306.0" layoutY="207.0" prefHeight="25.0" prefWidth="189.0" promptText="Repeat password" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backtologin" text="Back to login" />
+      <Label fx:id="regSuccessLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="210.0" layoutY="271.0" prefHeight="25.0" prefWidth="382.0" textFill="#2cee00" />
     </children>
 </AnchorPane>
