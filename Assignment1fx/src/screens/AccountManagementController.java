@@ -7,7 +7,12 @@ package screens;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -15,6 +20,24 @@ import javafx.fxml.Initializable;
  * @author ricardo van der spek
  */
 public class AccountManagementController implements Initializable {
+    @FXML
+    private Label label;
+    @FXML
+    private Label Funds;
+    @FXML
+    private Label iban;
+    @FXML
+    private Button AddFunds;
+    @FXML
+    private ChoiceBox<?> SubsciptionAmount;
+    @FXML
+    private Button addsubscription;
+    @FXML
+    private Label CharacterSlots;
+    @FXML
+    private Button BuyCharacterSlot;
+    @FXML
+    private TextField FundsAmount;
 
     /**
      * Initializes the controller class.

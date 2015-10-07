@@ -8,6 +8,20 @@
 
 <AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screens.AccountManagementController">
     <children>
-        
+        <Label fx:id="label" alignment="CENTER" layoutX="283.0" layoutY="14.0" minHeight="16" minWidth="69" prefHeight="37.0" prefWidth="235.0" text="Account Management" textAlignment="CENTER">
+         </Label>
+      <Label layoutX="45.0" layoutY="43.0" prefHeight="17.0" prefWidth="41.0" text="Funds:" />
+      <Label fx:id="Funds" layoutX="86.0" layoutY="43.0" />
+      <Label layoutX="45.0" layoutY="70.0" text="Iban:" />
+      <Label fx:id="iban" layoutX="72.0" layoutY="70.0" prefHeight="17.0" prefWidth="0.0" />
+      <Button fx:id="AddFunds" layoutX="392.0" layoutY="126.0" mnemonicParsing="false" text="add funds" />
+      <Label layoutX="312.0" layoutY="62.0" text="Add funds to your account" />
+      <ChoiceBox fx:id="SubsciptionAmount" layoutX="312.0" layoutY="200.0" prefWidth="150.0" />
+      <Button fx:id="addsubscription" layoutX="357.0" layoutY="242.0" mnemonicParsing="false" text="add subscription" />
+      <Label layoutX="312.0" layoutY="183.0" text="Buy more subscription" />
+      <Label layoutX="46.0" layoutY="100.0" text="Character slots:" />
+      <Label fx:id="CharacterSlots" layoutX="133.0" layoutY="104.0" />
+      <Button fx:id="BuyCharacterSlot" layoutX="45.0" layoutY="139.0" mnemonicParsing="false" text="Buy  a character slot $ 1" />
+      <TextField fx:id="FundsAmount" layoutX="309.0" layoutY="92.0" promptText="enter amount" />
     </children>
 </AnchorPane>
