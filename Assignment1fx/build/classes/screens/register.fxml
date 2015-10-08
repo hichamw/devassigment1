@@ -17,10 +17,11 @@
       <TextField fx:id="regUserName" layoutX="306.0" layoutY="74.0" prefHeight="25.0" prefWidth="189.0" promptText="Username" />
       <TextField fx:id="regFirstName" layoutX="306.0" layoutY="109.0" prefHeight="25.0" prefWidth="189.0" promptText="First name" />
       <TextField fx:id="regLastName" layoutX="306.0" layoutY="141.0" prefHeight="25.0" prefWidth="189.0" promptText="Last name" />
-      <Button fx:id="regSubmit" layoutX="364.0" layoutY="239.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Submit" />
+      <Button fx:id="regSubmit" layoutX="373.0" layoutY="271.0" mnemonicParsing="false" onAction="#onSubmitClick" text="Submit" />
       <PasswordField fx:id="regPassword" layoutX="306.0" layoutY="174.0" prefHeight="25.0" prefWidth="189.0" promptText="Password" />
       <PasswordField fx:id="regPasswordRepeat" layoutX="306.0" layoutY="207.0" prefHeight="25.0" prefWidth="189.0" promptText="Repeat password" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backtologin" text="Back to login" />
-      <Label fx:id="regSuccessLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="210.0" layoutY="271.0" prefHeight="25.0" prefWidth="382.0" textFill="#2cee00" />
+      <Label fx:id="regSuccessLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="210.0" layoutY="296.0" prefHeight="25.0" prefWidth="382.0" textFill="#2cee00" />
+      <TextField fx:id="regIBAN" layoutX="306.0" layoutY="238.0" prefHeight="25.0" prefWidth="189.0" promptText="IBAN" />
     </children>
 </AnchorPane>

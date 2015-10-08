@@ -6,4 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="screens.ManagementController" />
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screens.ManagementController">
+   <children>
+      <CheckBox layoutX="166.0" layoutY="148.0" mnemonicParsing="false" text="CheckBox" />
+      <Button layoutX="479.0" layoutY="227.0" mnemonicParsing="false" text="Button" />
+   </children>
+</AnchorPane>

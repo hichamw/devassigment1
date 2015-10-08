@@ -3,6 +3,10 @@
   <persistence-unit name="Assignment1fxPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>screens.Users</class>
+    <class>screens.Characters</class>
+    <class>screens.Servers</class>
+    <class>screens.Servers_1</class>
+    <class>screens.Characters_1</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/assignment 1"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
