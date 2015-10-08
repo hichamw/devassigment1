@@ -44,6 +44,8 @@ public class FXMLDocumentController implements ControlledScreen ,Initializable {
     private Button regSubmit;
     @FXML
     private Label regSuccessLabel;
+    @FXML
+    private TextField regIBAN;
     
     @Override
     public void setScreenParent(ScreensController screenParent){
@@ -67,13 +69,13 @@ public class FXMLDocumentController implements ControlledScreen ,Initializable {
             newUser.setLastName(regLastName.getText());
             newUser.setPassword(regPassword.getText());
             newUser.setUserName(regUserName.getText());
+            newUser.setIban(regIBAN.getText());
             newUser.setCharacterSlots(5);
             newUser.setBanned(false);
             newUser.setMonthsPayed(0);
             Date lastPayment = new Date();
-            newUser.setLastPayment(lastPayment);
-            newUser.setIban("null");
-            newUser.setBalance(null);
+            newUser.setLastPayment(lastPayment);    
+            newUser.setBalance(0);
             persist(newUser);
             regSuccessLabel.setText("Your account is successfully created!");
             }

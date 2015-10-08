@@ -7,21 +7,20 @@ package screens;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -43,14 +42,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
     @NamedQuery(name = "Users.findByBanned", query = "SELECT u FROM Users u WHERE u.banned = :banned")})
 public class Users implements Serializable {
-    static String LoggedInUser;
+    static Users VerifiedUser;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "user_name")
     private String userName;
     @Column(name = "balance")
-    private BigInteger balance;
+    private int balance;
     @Basic(optional = false)
     @Column(name = "first_name")
     private String firstName;
@@ -74,13 +73,26 @@ public class Users implements Serializable {
     private String password;
     @Column(name = "banned")
     private Boolean banned;
+    @ManyToMany(mappedBy = "usersCollection")
+    private Collection<Servers> serversCollection;
+    @ManyToMany(mappedBy = "usersCollection")
+    private Collection<Characters> charactersCollection;
 
-    
     public Users() {
     }
 
     public Users(String userName) {
         this.userName = userName;
+    }
+
+    public Users(String userName, String firstName, String lastName, String iban, Date lastPayment, int monthsPayed, String password) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.iban = iban;
+        this.lastPayment = lastPayment;
+        this.monthsPayed = monthsPayed;
+        this.password = password;
     }
 
     public String getUserName() {
@@ -91,11 +103,11 @@ public class Users implements Serializable {
         this.userName = userName;
     }
 
-    public BigInteger getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(BigInteger balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 
@@ -161,6 +173,24 @@ public class Users implements Serializable {
 
     public void setBanned(Boolean banned) {
         this.banned = banned;
+    }
+
+    @XmlTransient
+    public Collection<Servers> getServersCollection() {
+        return serversCollection;
+    }
+
+    public void setServersCollection(Collection<Servers> serversCollection) {
+        this.serversCollection = serversCollection;
+    }
+
+    @XmlTransient
+    public Collection<Characters> getCharactersCollection() {
+        return charactersCollection;
+    }
+
+    public void setCharactersCollection(Collection<Characters> charactersCollection) {
+        this.charactersCollection = charactersCollection;
     }
 
     @Override

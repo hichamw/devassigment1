@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.collections.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.FXCollections?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="screens.CharacterManagementController">
+   <children>
+       <Label fx:id="label" alignment="CENTER" layoutX="183.0" layoutY="14.0" minHeight="16" minWidth="69" prefHeight="37.0" prefWidth="235.0" text="Character Management" textAlignment="CENTER">
+            <font>
+               <Font name="Calibri" size="24.0" />
+            </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="51.0" prefHeight="25.0" prefWidth="127.0" text="Create character">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="46.0" layoutY="76.0" text="choose a name" />
+      <TextField fx:id="name" layoutX="46.0" layoutY="93.0" promptText="character name" />
+      <Label layoutX="46.0" layoutY="125.0" text="choose race" />
+      <ChoiceBox fx:id="races" layoutX="46.0" layoutY="142.0" prefWidth="150.0">
+      <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Ork" />
+                  <String fx:value="Imperial" />
+                  <String fx:value="Khajit" />
+                  <String fx:value="Nord" />
+              </FXCollections>
+      </items>
+      </ChoiceBox>
+      <Label layoutX="46.0" layoutY="174.0" text="choose class" />
+      <ChoiceBox fx:id="classes" layoutX="46.0" layoutY="200.0" prefWidth="150.0" >
+    <items>
+              <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Warrior" />
+                  <String fx:value="Ranger" />
+                  <String fx:value="Magic" />
+              </FXCollections>
+      </items>
+      </ChoiceBox>
+      <Button layoutX="93.0" layoutY="244.0" mnemonicParsing="false" onAction="#CreateCharacter" text="Create character" />
+   </children>
+</AnchorPane>

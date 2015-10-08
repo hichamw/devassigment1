@@ -21,17 +21,20 @@ public class ScreensFramework extends Application {
     public static String screen1File = "Login.fxml";
     public static String screen2ID = "register";
     public static String screen2File = "register.fxml";
-    public static String screen3ID = "management";
-    public static String screen3File = "management.fxml";
+    public static String screen3ID = "AccountManagement";
+    public static String screen3File = "AccountManagement.fxml";
+    public static String screen4ID = "CharacterManagement";
+    public static String screen4File = "CharacterManagement.fxml";
+    static ScreensController mainContainer = new ScreensController();
+    
     //TODO
     
     @Override
     public void start(Stage primaryStage) {
         
-        ScreensController mainContainer = new ScreensController();
+        
         mainContainer.loadScreen(ScreensFramework.screen1ID, ScreensFramework.screen1File);
         mainContainer.loadScreen(ScreensFramework.screen2ID, ScreensFramework.screen2File);
-        mainContainer.loadScreen(ScreensFramework.screen3ID, ScreensFramework.screen3File);
         
         mainContainer.setScreen(ScreensFramework.screen1ID);
         
