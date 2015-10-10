@@ -220,6 +220,6 @@ public class AccountManagementController implements Initializable, ControlledScr
     }
     public void GoToCharacterManagement(){
         mainContainer.loadScreen(ScreensFramework.screen4ID, ScreensFramework.screen4File);
-            myController.setScreen(ScreensFramework.screen4ID);
+        myController.setScreen(ScreensFramework.screen4ID);
     }
 }

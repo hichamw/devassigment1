@@ -16,15 +16,15 @@
                <Font name="Calibri" size="24.0" />
             </font>
       </Label>
-      <Label layoutX="37.0" layoutY="51.0" prefHeight="25.0" prefWidth="127.0" text="Create character">
+      <Label layoutX="47.0" layoutY="69.0" prefHeight="25.0" prefWidth="127.0" text="Create character">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label layoutX="46.0" layoutY="76.0" text="choose a name" />
-      <TextField fx:id="name" layoutX="46.0" layoutY="93.0" promptText="character name" />
-      <Label layoutX="46.0" layoutY="125.0" text="choose race" />
-      <ChoiceBox fx:id="races" layoutX="46.0" layoutY="142.0" prefWidth="150.0">
+      <Label layoutX="45.0" layoutY="98.0" text="choose a name" />
+      <TextField fx:id="name" layoutX="47.0" layoutY="120.0" promptText="character name" />
+      <Label layoutX="46.0" layoutY="151.0" text="choose race" />
+      <ChoiceBox fx:id="races" layoutX="46.0" layoutY="175.0" prefWidth="150.0">
       <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Ork" />
@@ -34,8 +34,8 @@
               </FXCollections>
       </items>
       </ChoiceBox>
-      <Label layoutX="46.0" layoutY="174.0" text="choose class" />
-      <ChoiceBox fx:id="classes" layoutX="46.0" layoutY="200.0" prefWidth="150.0" >
+      <Label layoutX="45.0" layoutY="206.0" text="choose class" />
+      <ChoiceBox fx:id="classes" layoutX="46.0" layoutY="231.0" prefWidth="150.0">
     <items>
               <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Warrior" />
@@ -44,6 +44,26 @@
               </FXCollections>
       </items>
       </ChoiceBox>
-      <Button layoutX="93.0" layoutY="244.0" mnemonicParsing="false" onAction="#CreateCharacter" text="Create character" />
+      <Button layoutX="92.0" layoutY="265.0" mnemonicParsing="false" onAction="#CreateCharacter" text="Create character" />
+      <Button layoutX="37.0" layoutY="20.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <Label layoutX="418.0" layoutY="69.0" text="Choose character">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="418.0" layoutY="143.0" text="Info about character:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="418.0" layoutY="179.0" text="Name:" />
+      <Label layoutX="418.0" layoutY="206.0" text="Class:" />
+      <Label layoutX="418.0" layoutY="235.0" text="Race:" />
+      <Label layoutX="420.0" layoutY="269.0" text="level:" />
+      <Label fx:id="characterName" layoutX="466.0" layoutY="179.0" prefHeight="17.0" prefWidth="91.0" text="Henk" />
+      <Label fx:id="characterClass" layoutX="466.0" layoutY="206.0" prefHeight="17.0" prefWidth="91.0" text="Warrior" />
+      <Label fx:id="characterRace" layoutX="466.0" layoutY="235.0" prefHeight="17.0" prefWidth="91.0" text="Nord" />
+      <Label fx:id="characterLevel" layoutX="466.0" layoutY="269.0" prefHeight="17.0" prefWidth="91.0" text="123" />
+      <ComboBox fx:id="chooseCharacter" layoutX="420.0" layoutY="108.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

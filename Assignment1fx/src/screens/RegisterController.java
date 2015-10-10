@@ -26,7 +26,7 @@ import javax.persistence.Column;
  *
  * @author hicham
  */
-public class FXMLDocumentController implements ControlledScreen ,Initializable {
+public class RegisterController implements ControlledScreen ,Initializable {
     ScreensController myController;
     @FXML
     private Label label;
@@ -78,7 +78,7 @@ public class FXMLDocumentController implements ControlledScreen ,Initializable {
             newUser.setBalance(0);
             persist(newUser);
             regSuccessLabel.setText("Your account is successfully created!");
-            }
+            }else{regSuccessLabel.setText("That username is already in use");}
         } catch(Exception e) {
             System.err.println(e.getMessage());
         }

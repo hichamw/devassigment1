@@ -59,13 +59,13 @@ public class LogInController  implements Initializable, ControlledScreen{
         String Password = password.getText(); 
         boolean verified = validate(Username,Password);
         if(verified){
-            mainContainer.loadScreen(ScreensFramework.screen3ID, ScreensFramework.screen3File);
-            myController.setScreen(ScreensFramework.screen3ID);
         EntityManager em = factory.createEntityManager();
         Query q = em.createQuery("SELECT u FROM Users u WHERE u.userName = :login ");
         q.setParameter("login", Username);
         Users user = (Users) q.getSingleResult();
         Users.VerifiedUser = user;
+        mainContainer.loadScreen(ScreensFramework.screen3ID, ScreensFramework.screen3File);
+        myController.setScreen(ScreensFramework.screen3ID);
         }else{
             loginvalidate.setText("Username/Password incorrect");
         }
