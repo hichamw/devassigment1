@@ -14,9 +14,9 @@
             <Font name="Calibri" size="24.0" />
          </font></Label>
       <TextField fx:id="username" layoutX="306.0" layoutY="91.0" prefHeight="25.0" prefWidth="189.0" promptText="Username" />
-      <TextField fx:id="password" layoutX="306.0" layoutY="124.0" prefHeight="25.0" prefWidth="189.0" promptText="Password" />
       <Button fx:id="Login" layoutX="376.0" layoutY="160.0" mnemonicParsing="false" onAction="#login" text="Log in" />
       <Button layoutX="726.0" layoutY="14.0" mnemonicParsing="false" onAction="#OpenRegister" text="Register" />
       <Label fx:id="loginvalidate" layoutX="306.0" layoutY="208.0" />
+      <PasswordField fx:id="password" layoutX="306.0" layoutY="129.0" prefHeight="25.0" prefWidth="189.0" />
     </children>
 </AnchorPane>

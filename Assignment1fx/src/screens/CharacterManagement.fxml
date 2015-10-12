@@ -64,6 +64,9 @@
       <Label fx:id="characterClass" layoutX="466.0" layoutY="206.0" prefHeight="17.0" prefWidth="91.0" text="Warrior" />
       <Label fx:id="characterRace" layoutX="466.0" layoutY="235.0" prefHeight="17.0" prefWidth="91.0" text="Nord" />
       <Label fx:id="characterLevel" layoutX="466.0" layoutY="269.0" prefHeight="17.0" prefWidth="91.0" text="123" />
-      <ComboBox fx:id="chooseCharacter" layoutX="420.0" layoutY="108.0" prefWidth="150.0" />
+      <ComboBox fx:id="chooseCharacter" layoutX="420.0" layoutY="108.0" onAction="#GetCharacterInfo" prefWidth="150.0" />
+      <ComboBox fx:id="chooseServer" layoutX="235.0" layoutY="323.0" prefWidth="150.0" />
+      <Label layoutX="235.0" layoutY="290.0" text="Choose server" />
+      <Button fx:id="connect" layoutX="469.0" layoutY="323.0" mnemonicParsing="false" onAction="#ConnectToServer" text="Connect" />
    </children>
 </AnchorPane>

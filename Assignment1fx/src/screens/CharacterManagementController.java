@@ -28,6 +28,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import static screens.ScreensFramework.mainContainer;
@@ -38,11 +39,13 @@ import static screens.ScreensFramework.mainContainer;
  * @author hicham
  */
 public class CharacterManagementController implements Initializable, ControlledScreen {
+    
     private static final String PERSISTENCE_UNIT_NAME = "Assignment1fxPU";
-    private static EntityManagerFactory factory;
+    private static EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
     ScreensController myController;
     List<Characters> characterList = new ArrayList<Characters>();
     List<Users> userList = new ArrayList<Users>();
+    List<Servers> serverList = new ArrayList<Servers>();
     @FXML
     private Label label;
     @FXML
@@ -61,24 +64,27 @@ public class CharacterManagementController implements Initializable, ControlledS
     private Label characterLevel;
     @FXML
     private ComboBox<String> chooseCharacter;
+    @FXML
+    private ComboBox<String> chooseServer;
 
-    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         populateCharacters();
-    }    
-    
+        populateServers();
+    }
+
     @Override
     public void setScreenParent(ScreensController screenParent) {
         myController = screenParent;
     }
-    
-    public void CreateCharacter(ActionEvent event){
+
+    @FXML
+    public void CreateCharacter(ActionEvent event) {
         int currentSlots = Users.VerifiedUser.getCharacterSlots();
-        if(currentSlots > 0){
+        if (currentSlots > 0) {
             Characters character = new Characters();
             character.setName(name.getText());
             switch (races.getSelectionModel().getSelectedIndex()) {
@@ -116,7 +122,7 @@ public class CharacterManagementController implements Initializable, ControlledS
             System.out.println(character.getName());
             int newSlots = currentSlots - 1;
             Users.VerifiedUser.setCharacterSlots(newSlots);
-            persist(character,Users.VerifiedUser);
+            persist(character, Users.VerifiedUser);
             chooseCharacter.getItems().clear();
             populateCharacters();
         } else {
@@ -127,15 +133,78 @@ public class CharacterManagementController implements Initializable, ControlledS
             alert.showAndWait();
         }
     }
+
+    @FXML
+    public void back(ActionEvent event) {
+        mainContainer.loadScreen(ScreensFramework.screen3ID, ScreensFramework.screen3File);
+        myController.setScreen(ScreensFramework.screen3ID);
+    }
+
+    public void populateCharacters() {
+        EntityManager em = factory.createEntityManager();
+        Query q = em.createQuery("SELECT c FROM Users u JOIN u.charactersCollection c WHERE u.userName = :user_name ORDER BY c.level");
+        q.setParameter("user_name", Users.VerifiedUser.getUserName());
+        List<Characters> resultList = q.getResultList();
+
+        for (int x = 0; x < resultList.size(); x++) {
+            chooseCharacter.getItems().add(resultList.get(x).getName());
+        }
+    }
     
-    public void persist(Object object,Object object2) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("Assignment1fxPU");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+    public void GetCharacterInfo(ActionEvent event){
+        String selectedCharacter = chooseCharacter.getSelectionModel().getSelectedItem();
+        EntityManager em = factory.createEntityManager();
+        Query q = em.createQuery("SELECT c FROM Users u JOIN u.charactersCollection c WHERE u.userName = :user_name AND c.name = :selChar ORDER BY c.level");
+        q.setParameter("user_name", Users.VerifiedUser.getUserName());
+        q.setParameter("selChar", selectedCharacter);
+        Characters infoAbout = (Characters) q.getSingleResult();
+       
+        characterName.setText(infoAbout.getName());
+        characterClass.setText(infoAbout.getClass1());
+        characterRace.setText(infoAbout.getRace());
+        characterLevel.setText(Integer.toString(infoAbout.getLevel()));
+    }
+
+
+    public void populateServers() {
+        EntityManager em = factory.createEntityManager();
+
+        Query q = em.createQuery("SELECT s FROM Servers s");
+        List<Servers> resultList = q.getResultList();
+
+        for (int x = 0; x < resultList.size(); x++) {
+            chooseServer.getItems().add(resultList.get(x).getAddress());
+        }
+    }
+
+    public void ConnectToServer(ActionEvent event) {
+        String selectedCharacter = chooseCharacter.getSelectionModel().getSelectedItem();
+        String selectedServer = chooseServer.getSelectionModel().getSelectedItem();
+            EntityManager em = factory.createEntityManager();
+
+        Query q = em.createQuery("SELECT s FROM Servers s WHERE s.address = :address");
+        q.setParameter("address", selectedServer);
+        Servers Currentserver = (Servers) q.getSingleResult();
+        serverList.add(Currentserver);
+        Users.VerifiedUser.setServersCollection(serverList);
+        userList.add(Users.VerifiedUser);
+        Currentserver.setUsersCollection(userList);
+        Currentserver.setConnectedUsers(Users.VerifiedUser.getUserName().toString());
+        persist(Currentserver, Users.VerifiedUser);
+        chooseServer.getItems().clear();
+        populateServers();
+
+    }
+
+    public void persist(Object object, Object object2) {
+            EntityManager em = factory.createEntityManager();
+            
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
         try {
             em.merge(object);
             em.merge(object2);
-            em.getTransaction().commit();
+            tx.commit();
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
@@ -143,24 +212,4 @@ public class CharacterManagementController implements Initializable, ControlledS
             em.close();
         }
     }
-    public void back(ActionEvent event){
-        mainContainer.loadScreen(ScreensFramework.screen3ID, ScreensFramework.screen3File);
-        myController.setScreen(ScreensFramework.screen3ID);
-    }
-
-    public void populateCharacters() {
-        factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
-        Query q = em.createQuery("SELECT c FROM Users u JOIN u.charactersCollection c WHERE u.userName = :user_name ORDER BY c.level");
-        q.setParameter("user_name", Users.VerifiedUser.getUserName());
-        List<Characters> resultList = q.getResultList();
-        Map<String, String> results = new HashMap<String, String>();
-        //List<String> comboList = new FXCollections.ObservableList(list) {};
-        //ComboBox chooseCharacter = new ComboBox(resultList.toArray());
-        
-        for(int x = 0;x<resultList.size();x++){
-            chooseCharacter.getItems().add(resultList.get(x).getName());
-        }
-        
-   }
 }
